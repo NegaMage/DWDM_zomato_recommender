@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Preference Input Page
+{% endblock %}
+
+{% block content %}
+
+    <h2>
+        Demo - Input your preferences!
+    </h2>
+    
+    <div class="container" style="padding:10px">
+        <div class="card mb-3">
+            <div class="card-header">Input area</div>     
+            <div class="card-body"> 
+                <form method="POST" action="get_suggestions">
+                    <div class="form-group">
+                        <label for="location">User location</label>
+                        <select class="fstdropdown-select" id="location_sel" name="location_sel">
+                            {% for location in locations %}
+                                <option>{{location}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="dine_in" name="dine_in">
+                                <label class="form-check-label" for="dine_in">Dine in?</label>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="takeout" name="takeout">
+                                <label class="form-check-label" for="takeout">Takeout?</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <br>
+                    <div class="form-group">
+                        <label>Price for 2 people (in Rs)</label>
+                        <input type="price" class="form-control" id="price" name="price">
+                    </div>
+                    
+
+
+                    <div class="container">
+                        <div class="row">
+                            <h5>Food preferences</h5>
+                        </div>
+                        <div class="row">
+
+                            {% for food_type in food_types %}
+                                <div class="col">
+                                    <input type="checkbox" class="form-check-input" id= {{ food_type }} name={{ food_type }} >
+                                    <label class="form-check-label" for= {{ food_type }} >{{ food_type.capitalize() }} ?</label>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+                    
+                    <br><br>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+
+
+                </form>
+
+
+            </div>    
+        </div>
+    </div>
+
+    <div class="container" style="padding:10px">
+        <div class="card mb-3">
+            <div class="card-header">Outputs</div>     
+            <div class="card-body"> 
+                
+            </div>    
+        </div>
+    </div>
+
+{% endblock %}

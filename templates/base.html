@@ -1,0 +1,62 @@
+<html>
+    <head>
+        <title>{% block title %}{% endblock %} - DWDM Project</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- Bootstrap CSS --> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <!-- bootstrap with js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="{{ url_for('static', filename='fstdropdown.js') }}"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='fstdropdown.css') }}">
+    </head>
+    
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">DWDM Project - Zomato Recommender</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                <a class="nav-link" href="/recommender">Recommender System</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="/testpage">Test Page</a>
+                </li>
+            </ul>
+        </div>
+      </nav>
+
+
+
+    <section class="container content">
+      <header>
+        {% block header %}{% endblock %}
+      </header>
+
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+      {% block content %}{% endblock %}
+    </section>
+</html>
+
+
+
+
