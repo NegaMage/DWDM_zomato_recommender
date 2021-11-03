@@ -6,6 +6,9 @@ DWDM Project submitted by:
 
 **Feyaz Baker** 181CO119
 
+## Brief:
+In this project, we looked at the [zomato dataset](https://www.kaggle.com/himanshupoddar/zomato-bangalore-restaurants), which contains a large amount of restaurants. From there, we cleaned and pared the data down, and augmented the data with location data, NLP for food item classification, and some feature extraction, to result in a dataframe. With the location data, we were able to generate an adjacency graph for all locations, and with all this information, we trained a model. This repo is just the frontend that takes the results of the [colab notebook here](https://colab.research.google.com/drive/1gQaFM9grXS3QIEm6Oahg08objzEmWS8R?usp=sharing&authuser=1#scrollTo=-bH38wnLr6YN), and presents the outputs with Flask and a few other libraries. All libraries used are in `requirements.txt`. 
+
 ## Warning: 
 
 This project requires you to extract the accompanying `data.zip` and place the four files in the root of this folder. Those files were generated with the colab code [here](https://colab.research.google.com/drive/1gQaFM9grXS3QIEm6Oahg08objzEmWS8R?usp=sharing&authuser=1#scrollTo=-bH38wnLr6YN). 
