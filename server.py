@@ -11,11 +11,6 @@ from math import radians, cos, sin, asin, sqrt
 from sklearn.cluster import Birch
 
 
-distance = 0.1
-
-# print("Loading list of locations...")
-# locations = ['Domlur', 'Langford Town', 'Sankey Road', 'Basavanagudi', 'Jalahalli', 'Bommanahalli', 'Rammurthy Nagar', 'Electronic City', 'Vijay Nagar', 'Frazer Town', 'Ulsoor', 'Kaggadasapura', 'Koramangala 2nd Block', 'Nagawara', 'Brookefield', 'Basaveshwara Nagar', 'West Bangalore', 'Mysore Road', 'Sahakara Nagar', 'Yelahanka', 'HSR', 'Marathahalli', 'Uttarahalli', 'Wilson Garden', 'Ejipura', 'Sanjay Nagar', 'CV Raman Nagar', 'Yeshwantpur', 'Vasanth Nagar', 'HBR Layout', 'Infantry Road', 'South Bangalore', 'Richmond Road', 'RT Nagar', 'Old Airport Road', 'Koramangala 8th Block', 'Old Madras Road', 'New BEL Road', 'Rajajinagar', 'Magadi Road', 'Kanakapura Road', 'Koramangala 3rd Block', 'North Bangalore', 'Koramangala 5th Block', 'Kammanahalli', 'Church Street', 'Majestic', 'Jayanagar', 'Sadashiv Nagar', 'Sarjapur Road', 'Kumaraswamy Layout', 'Cunningham Road', 'Race Course Road', 'Jeevan Bhima Nagar', 'Brigade Road', 'Kalyan Nagar', 'Koramangala 7th Block', 'Bannerghatta Road', 'KR Puram', 'Koramangala', 'Banaswadi', 'Koramangala 6th Block', 'JP Nagar', 'Koramangala 4th Block', 'Banashankari', 'Shanti Nagar', 'East Bangalore', 'Thippasandra', 'Bellandur', 'Koramangala 1st Block', 'Lavelle Road', 'Varthur Main Road, Whitefield', 'Hosur Road', 'BTM', 'MG Road', 'Seshadripuram', 'Malleshwaram', 'Rajarajeshwari Nagar', 'Indiranagar', 'Residency Road', 'Central Bangalore', 'ITPL Main Road, Whitefield', 'St. Marks Road', 'Shivajinagar', 'City Market', 'Hennur', 'Commercial Street', 'Whitefield']
-
 print("Loading food types...")
 food_types = ['veg', 'non_veg', 'alcoholic_beverage', 'non_alcoholic_beverage', 'dessert']
 food_types_clean = ['Vegetarian', 'Non-Vegetarian', 'Alcoholic beverages', 'Non-Alcoholic Beverages', 'Dessert']
@@ -162,10 +157,6 @@ def get_suggestions():
 
     idx = col_map[location_sel]
 
-    # preferences = [type_sel, takeout, dine_in, rating, price_for_two, idx, avg_lat_long.iloc[idx]["latitude"], avg_lat_long.iloc[idx]["longitude"], vegetarian, nonvegetarian, alcoholic_beverage, non_alcoholic_beverage, dessert]
-
-    
-
     preferences = [int(type_map[type_sel]), int(takeout), int(dine_in), float(rating), int(price_for_two), int(idx), float(avg_lat_long.iloc[idx]["latitude"]), float(avg_lat_long.iloc[idx]["longitude"]), int(vegetarian), int(nonvegetarian), int(alcoholic_beverage), int(non_alcoholic_beverage), int(dessert)]
 
     app.logger.info(preferences)
@@ -176,11 +167,6 @@ def get_suggestions():
     results.drop(['Unnamed: 0'], axis=1, inplace=True)
     
     return redirect(request.referrer)   
-
-@app.route("/testpage")
-def testpage():
-    global distance
-    return render_template('page.html', distance=distance)
 
 @app.route("/setdistance", methods=["POST"])
 def setdistance():

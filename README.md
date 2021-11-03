@@ -8,7 +8,11 @@ DWDM Project submitted by:
 
 ## Warning: 
 
-This project requires you to extract the accompanying `data.zip` and place the four files in the root of this folder. Those files were generated with the colab code [here](https://colab.research.google.com/drive/1gQaFM9grXS3QIEm6Oahg08objzEmWS8R?usp=sharing&authuser=1#scrollTo=-bH38wnLr6YN). Part of the code uses a Google Maps API, which is a paid product, and hence we haven't attached the key for the same. Because of this, some cells of the colab notebook are commented out entirely, but the rest of the notebook functions as expected.
+This project requires you to extract the accompanying `data.zip` and place the four files in the root of this folder. Those files were generated with the colab code [here](https://colab.research.google.com/drive/1gQaFM9grXS3QIEm6Oahg08objzEmWS8R?usp=sharing&authuser=1#scrollTo=-bH38wnLr6YN). 
+
+Part of the colab code uses a Google Maps API, which is a paid product, and hence we haven't attached the key for the same. Because of this, some cells of the colab notebook are commented out entirely, but the rest of the notebook functions as expected.
+
+
 
 ## Instructions to execute:
 
