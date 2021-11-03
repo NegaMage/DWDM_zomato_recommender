@@ -108,7 +108,7 @@ def haversine(lat1, lon1, lat2, lon2):
 @app.route("/") 
 def home(): 
     global distance
-    return render_template('home.html', distance=distance)
+    return render_template('home.html')
 
 @app.route("/recommender")
 def recommender():
@@ -132,7 +132,7 @@ def get_suggestions():
     global df
 
     req = request.form
-    flash("Made new request: "+str(req))
+    flash("Made new request! Please scroll down to outputs card.")
 
     # ['veg', 'non_veg', 'alcoholic_beverage', 'non_alcoholic_beverage', 'dessert']
     type_sel = req.getlist("type_sel")[0]
@@ -166,14 +166,6 @@ def get_suggestions():
     results = df.iloc[indices]
     results.drop(['Unnamed: 0'], axis=1, inplace=True)
     
-    return redirect(request.referrer)   
-
-@app.route("/setdistance", methods=["POST"])
-def setdistance():
-    global distance
-    distance = float(request.form["distance"])
-    flash("Made new request")
-    print("set distance to", distance, file=sys.stderr)
     return redirect(request.referrer)   
 
 
