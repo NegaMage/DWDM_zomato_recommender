@@ -15,11 +15,12 @@
             <div class="card-header">Input area</div>     
             <div class="card-body"> 
                 <form method="POST" action="get_suggestions">
+
                     <div class="form-group">
-                        <label for="location">User location</label>
-                        <select class="fstdropdown-select" id="location_sel" name="location_sel">
-                            {% for location in locations %}
-                                <option>{{location}}</option>
+                        <label for="location"><b>Type of Restaurant</b></label>
+                        <select class="fstdropdown-select" id="type_sel" name="type_sel">
+                            {% for listed_type in type_list %}
+                                <option>{{listed_type}}</option>
                             {% endfor %}
                         </select>
                     </div>
@@ -27,36 +28,54 @@
                     <div class="row">
                         <div class="col">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="dine_in" name="dine_in">
-                                <label class="form-check-label" for="dine_in">Dine in?</label>
+                                <input type="checkbox" class="form-check-input" id="takeout" name="takeout">
+                                <label class="form-check-label" for="takeout"><b>Takeout?</b></label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="takeout" name="takeout">
-                                <label class="form-check-label" for="takeout">Takeout?</label>
+                                <input type="checkbox" class="form-check-input" id="dine_in" name="dine_in">
+                                <label class="form-check-label" for="dine_in"><b>Dine in?</b></label>
                             </div>
+                        </div>
+                    </div>
+
+                    <br>
+                    <label for="rating_input" class="form-label"><b>Rating</b></label>
+                    <br>
+                    <div class='row justify-content-center'>
+                        <div class="col">
+                            0
+                            <input type="range" class="form-range" min="0" max="5" step="0.1" id="rating_input" name="rating_input">
+                            5
                         </div>
                     </div>
                     
                     <br>
                     <div class="form-group">
-                        <label>Price for 2 people (in Rs)</label>
+                        <label><b>Price for 2 people (in Rs)</b></label>
                         <input type="price" class="form-control" id="price" name="price">
                     </div>
-                    
 
+                    <div class="form-group">
+                        <label for="location"><b>User location</b></label>
+                        <select class="fstdropdown-select" id="location_sel" name="location_sel">
+                            {% for location in locations %}
+                                <option>{{location}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
 
                     <div class="container">
                         <div class="row">
-                            <h5>Food preferences</h5>
+                            <h5><b>Food preferences</b></h5>
                         </div>
                         <div class="row">
 
-                            {% for food_type in food_types %}
+                            {% for (food_type, food_type_clean) in zipped_file %}
                                 <div class="col">
                                     <input type="checkbox" class="form-check-input" id= {{ food_type }} name={{ food_type }} >
-                                    <label class="form-check-label" for= {{ food_type }} >{{ food_type.capitalize() }} ?</label>
+                                    <label class="form-check-label" for= {{ food_type }} >{{ food_type_clean }}?</label>
                                 </div>
                             {% endfor %}
 
@@ -79,7 +98,30 @@
         <div class="card mb-3">
             <div class="card-header">Outputs</div>     
             <div class="card-body"> 
-                
+                {% for idx, row in results.iterrows() %}
+                    <b><a href={{ row["url"] }}>{{ row["name"] }}</a></b>, {{ row["rate"] }}/5.0, {{ row["votes"] }} votes.<br>
+                    {{ row["address"] }}, <br>
+                    Phone: {{ row["phone"] }} | Specialities: 
+                    {% if row["veg"] %}
+                        Vegetarian 
+                    {% endif %}
+                    {% if row["non_veg"] %}
+                        Non-vegetarian 
+                    {% endif %}
+                    {% if row["alcoholic_beverage"] %}
+                        Alcoholic beverages  
+                    {% endif %}
+                    {% if row["non_alcoholic_beverage"] %}
+                        Non-alcoholic beverages 
+                    {% endif %}
+                    {% if row["dessert"] %}
+                        Dessert 
+                    {% endif %}
+                    <br>
+                    Average cost: {{ row["cost"] }}
+                    <br>
+                    <br><hr><br>
+                {% endfor %}
             </div>    
         </div>
     </div>
