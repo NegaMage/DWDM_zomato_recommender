@@ -41,6 +41,9 @@ def initialisation_tasks():
     global type_map
     global locations
     global type_list
+    global results
+
+    results = pd.DataFrame()
 
     print("Loading csv files...")
     df = pd.read_csv("df_post_processing.csv")

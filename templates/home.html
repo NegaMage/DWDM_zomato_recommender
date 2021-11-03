@@ -10,7 +10,7 @@
         Home page
     </h1>
     <div class="container" style="padding:10px">
-        <div class="card mb-3 h-100">
+        <div class="card mb-3">
             <div class="card-header">
                 <h3>
                     Our Project: Zomato Recommender System
@@ -27,10 +27,32 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <h3>Brief:</h3>
+                In this project, we looked at the <a href="https://www.kaggle.com/himanshupoddar/zomato-bangalore-restaurants">zomato dataset</a>, which contains a large amount of restaurants. From there, we cleaned and pared the data down, and augmented the data with location data, NLP for food item classification, and some feature extraction, to result in a dataframe. With the location data, we were able to generate an adjacency graph for all locations, and with all this information, we trained a model. This repo is just the frontend that takes the results of the <a href="https://colab.research.google.com/drive/1gQaFM9grXS3QIEm6Oahg08objzEmWS8R?usp=sharing&authuser=1#scrollTo=-bH38wnLr6YN">colab notebook here</a>, and presents the outputs with Flask and a few other libraries. All libraries used are in <b>requirements.txt</b>. 
+
+                <br>
+
+                The goal of this project was to make a recommender system, where, once a user inputs their preferences, we can use it to recommend other hotels they may enjoy. The similarity was judged by classification, and nearby elements were isolated to find optimal hotels.
+                <hr>
+                <h3>Warning!</h3> 
+
+                This project requires you to extract the accompanying `data.zip` and place the four files in the root of this folder. Those files were generated with the <a href="https://colab.research.google.com/drive/1gQaFM9grXS3QIEm6Oahg08objzEmWS8R?usp=sharing&authuser=1#scrollTo=-bH38wnLr6YN">colab notebook here</a>. 
+
+                Part of the colab code uses a Google Maps API, which is a paid product, and hence we haven't attached the key for the same. Because of this, some cells of the colab notebook are commented out entirely, but the rest of the notebook functions as expected.
+
+
+                <hr>
+                <h3>Instructions to execute:</h3>
+
+                <ol>
+                    <li>Use the navbar at the top of this page to go the Recommender System.</li>
+                    <li>
+                        From there, input your preferences, and scroll down to see the outputs.
+                    </li>
+                </ol>
             </div>    
             <hr>
-
-            We made a system that takes user preferences, and uses that information to identify other restaurants they may enjoy. 
         </div>
     </div>
 {% endblock %}
