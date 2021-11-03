@@ -149,7 +149,7 @@ def get_suggestions():
 
 
     location_sel = req.getlist("location_sel")[0]
-    
+    ignore_dists = "ignore_dists" in req
     vegetarian = "veg" in req
     nonvegetarian = "non_veg" in req
     alcoholic_beverage = "alcoholic_beverage" in req
@@ -164,7 +164,7 @@ def get_suggestions():
 
     app.logger.info(preferences)
 
-    indices = model_pred(model, cluster_data, preferences)["Unnamed: 0"]
+    indices = model_pred(model, cluster_data, preferences, ignore_dists)["Unnamed: 0"]
     
     results = df.iloc[indices]
     results.drop(['Unnamed: 0'], axis=1, inplace=True)
