@@ -44,18 +44,23 @@ def initialisation_tasks():
     global results
 
     results = pd.DataFrame()
+    print("Starting initialisation_tasks:")
+    print("Loading files...")
+    try:
+        print("Loading csv files...")
+        df = pd.read_csv("df_post_processing.csv")
+        cluster_data = pd.read_csv("cluster_data.csv")
+        avg_lat_long = df.groupby("location").mean()[["latitude", "longitude"]]
 
-    print("Loading csv files...")
-    df = pd.read_csv("df_post_processing.csv")
-    cluster_data = pd.read_csv("cluster_data.csv")
-    avg_lat_long = df.groupby("location").mean()[["latitude", "longitude"]]
+        print("Loading adjacency graph...")
+        pickle_file = open('adj_graph_pickle.txt', "rb")
+        adj_graph = pickle.load(pickle_file)
 
-    print("Loading adjacency graph...")
-    pickle_file = open('adj_graph_pickle.txt', "rb")
-    adj_graph = pickle.load(pickle_file)
-
-    print("Loading trained model...")
-    model = pickle.load(open("birch_model.sav", 'rb'))
+        print("Loading trained model...")
+        model = pickle.load(open("birch_model.sav", 'rb'))
+    except FileNotFoundError:
+        print("ERROR: The required files weren't found! Please go to the repo, extract data.zip, and place those files in this directory.")
+        sys.exit()
 
     print("Generating colour map for locations...")
     colours = []
